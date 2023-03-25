@@ -11,12 +11,10 @@
 </html>
 
 <script>
-
     function displayMessage(){
         const d = new Date();
         let hour = d.getHours();
         let welcome = document.getElementById("welcome_message")
         hour >= 12 ? welcome.innerHTML = "Good afternoon, Colin." : welcome.innerHTML = "Good morning, Colin";
     }
-
 </script>
