@@ -1,9 +1,7 @@
 pipeline {
     	agent any
-    
 	tools {
-        // Install the Maven version configured as "M3" and add it to the path.
-        maven "maven"
+        	maven "maven"
 	}
 	environment{
 		DOCKERHUB_CREDENTIALS = credentials('docker')
@@ -39,7 +37,6 @@ pipeline {
 				sh "docker push cmoore156/comp367lab3:${env.BUILD_ID}"
 			}
 		}
-	}
-						
+	}				
     }
 }
