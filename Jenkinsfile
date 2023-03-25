@@ -5,20 +5,19 @@ pipeline {
             args '-v /root/.m2:/root/.m2' 
         }
     }
-    stages {
-        stage('Build') { 
-            steps {
-                sh 'mvn -B -DskipTests clean package' 
-            }
+    stage('Build') { 
+        steps {
+            sh 'mvn -B -DskipTests clean package' 
         }
-      stage('Build image') {
-       dockerImage = docker.build("cmoore156/comp367lab3:latest")
+    }
+    stage('Build image') {
+        dockerImage = docker.build("cmoore156/comp367lab3:latest")
     }
     
- stage('Push image') {
-        withDockerRegistry([ credentialsId: "dockerhubaccount", url: "" ]) {
-        dockerImage.push()
-        }
+     stage('Push image') {
+            withDockerRegistry([ credentialsId: "dockerhubaccount", url: "" ]) {
+            dockerImage.push()
+            }
     }    
-    }
+    
 }
