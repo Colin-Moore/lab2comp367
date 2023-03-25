@@ -27,13 +27,19 @@ pipeline {
         }
         stage("Docker login"){
             steps{
-                script{
-              		withCredentials([usernamePassword(credentialsId: 'docker', passwordVariable: 'dockerhub_pwd', usernameVariable, 'dockerhub_user')]
-					{
-						sh "docker login --username \$(dockerhub-user) --password \$(dockerhub_pwd)"
-						sh "docker login -u cmoore156 -p X15qrA85fF'
-		}
+		 withCredentials([usernamePassword(credentialsId: 'docker', passwordVariable: 'password', usernameVariable: 'username')]) {
+    sh "docker login -u $username -p $password ..."
+}
 	    }
+	
 	}
+	    stage("Docker Push"){
+		    steps{
+			    script{
+				    sh "docker push cmoore156/comp367lab3:${env.BUILD_ID}"
+			    }
+		    }
+	    }
+						
     }
 }
