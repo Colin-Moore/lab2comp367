@@ -12,7 +12,7 @@ pipeline {
         stage("check out"){
             steps{
                 echo "current build: ${env.BUILD_ID}"
-                      git branch: 'master', url: "https://github.com/Colin-Moore/lab2comp367'
+                      git branch: 'master', url: 'https://github.com/Colin-Moore/lab2comp367'
              }
         }
         stage("Build"){
