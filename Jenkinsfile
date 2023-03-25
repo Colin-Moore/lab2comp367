@@ -30,7 +30,7 @@ pipeline {
 		 withCredentials([usernamePassword(credentialsId: 'docker', passwordVariable: 'password', usernameVariable: 'username')]) {
     sh "docker login -u $username -p $password ..."
 }
-	    }
+	    
 	
 	}
 	    stage("Docker Push"){
