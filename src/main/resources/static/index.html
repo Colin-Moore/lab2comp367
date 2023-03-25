@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body onload="displayMessage()">
+<h3 id="welcome_message"></h3>
+<h4>Welcome to COMP367</h4>
+</body>
+</html>
+
+<script>
+
+    function displayMessage(){
+        const d = new Date();
+        let hour = d.getHours();
+        let welcome = document.getElementById("welcome_message")
+        hour >= 12 ? welcome.innerHTML = "Good afternoon, Colin." : welcome.innerHTML = "Good morning, Colin";
+    }
+
+</script>
