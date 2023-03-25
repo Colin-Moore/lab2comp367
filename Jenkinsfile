@@ -4,7 +4,10 @@ pipeline {
 	tools {
         // Install the Maven version configured as "M3" and add it to the path.
         maven "maven"
-    }
+	}
+	environment{
+		DOCKERHUB_CREDENTIALS = credentials('docker')
+	}
     stages {
         stage('check out') {
             steps {
@@ -25,11 +28,10 @@ pipeline {
             }
         }
         stage("Docker login"){
-            steps{
-		    withCredentials([usernamePassword(credentialsId: 'docker', passwordVariable: 'password', usernameVariable: 'username')]) {
-			sh "docker login -u $username -p $password ..."
-		    }
-	    }
+		steps{                            
+			sh 'echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'                 
+			echo 'Login Completed'                
+      		} 
 	}
 	stage("Docker Push"){
 		steps{
