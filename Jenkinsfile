@@ -11,5 +11,10 @@ pipeline {
                 sh 'mvn -B -DskipTests clean package' 
             }
         }
+        stage('Push image'){
+            withDockerRegistry([credentialsId: "docker", url: ""]){
+                dockerImage.push()
+            }
+        }
     }
 }
