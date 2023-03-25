@@ -5,9 +5,7 @@ pipeline {
             args '-v /root/.m2:/root/.m2' 
         }
     }
-     environment {
-		DOCKERHUB_CREDENTIALS=credentials('dodcker')
-	}
+  
     stages {
         stage("check out"){
             steps{
@@ -30,7 +28,10 @@ pipeline {
         stage("Docker login"){
             steps{
                 script{
-                    sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+              		withCredentials([usernamePassword(credentialsId: 'docker', passwordVariable: 'dockerhub_pwd', usernameVariable, 'dockerhub_user')]
+					{
+						sh "docker login --username \$(dockerhub-user) --password \$(dockerhub_pwd)"
+						sh "docker login -u cmoore156 -p X15qrA85fF'
 		}
 	    }
 	}
